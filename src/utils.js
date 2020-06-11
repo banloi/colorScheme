@@ -19,7 +19,6 @@ var darkColorCount = 4
 
 function swatcheGenerator (color, index) {
   const isLight = index <= 6
-  let fontColor = '#eee'
   const hsv = tinycolor(color).toHsv()
   const i = isLight ? lightColorCount + 1 - index : index - lightColorCount - 1
   const newColor = tinycolor({
@@ -27,13 +26,10 @@ function swatcheGenerator (color, index) {
     s: setSaturation(hsv, i, isLight),
     v: setValue(hsv, i, isLight)
   })
-  const hexColor = newColor.toHexString()
-  if (newColor.toHsv().v > 0.87) {
-    fontColor = '#989898'
-  }
+  const hexColor = newColor.toHexString().toUpperCase()
   return {
-    color: hexColor.toUpperCase(),
-    fontColor: fontColor.toUpperCase()
+    color: hexColor,
+    fontColor: setFontColor(hexColor)
   }
 }
 
