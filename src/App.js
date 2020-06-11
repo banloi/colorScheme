@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ColorBlock, Swatche } from './components'
+import { setFontColor } from './utils'
 import './style/container.scss'
 import data from './assets/colors.json'
 function App () {
@@ -10,7 +11,7 @@ function App () {
   return (
     <div className='warapper' style={{ backgroundColor: backgroundColor }}>
       <div className='container'>
-        <div className='list'>
+        <div className='list' style={{ color: setFontColor(backgroundColor) }}>
           {data.map((list) => {
             return <ColorBlock onSelect={handleSelect} key={list.hex + list.pinyin} info={list} />
           })}
@@ -20,7 +21,6 @@ function App () {
         />
       </div>
     </div>
-
   )
 }
 

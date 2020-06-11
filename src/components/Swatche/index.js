@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import generator from '../../util/generator'
+import { swatcheGenerator } from '../../utils'
 import './index.scss'
 
 function Swatche (props) {
@@ -7,8 +7,7 @@ function Swatche (props) {
   return (
     <div className='swatche'>
       {list.map(index => {
-        const color = generator(props.color, index)
-        console.log(color)
+        const color = swatcheGenerator(props.color, index)
         return (
           <div key={index + color} style={{ backgroundColor: color.color }}>
             <span className='color' style={{ color: color.fontColor }}>{color.color}</span>

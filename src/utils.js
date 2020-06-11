@@ -1,5 +1,14 @@
 const tinycolor = require('tinycolor2')
 
+function setFontColor (color) {
+  const hsvColor = tinycolor(color).toHsv()
+  const white = tinycolor.readability(hsvColor, '#fff')
+  const black = tinycolor.readability(hsvColor, '#000')
+  console.log(white)
+  console.log(black)
+  return white > 2 || white > black ? 'rgba(255,255,255,0.9)' : 'rgba(0,0,0,0.4)'
+}
+
 var hueStep = 2
 var saturationStep = 16
 var saturationStep2 = 5
@@ -8,7 +17,7 @@ var brightnessStep2 = 15
 var lightColorCount = 5
 var darkColorCount = 4
 
-function generator (color, index) {
+function swatcheGenerator (color, index) {
   const isLight = index <= 6
   let fontColor = '#eee'
   const hsv = tinycolor(color).toHsv()
@@ -72,4 +81,4 @@ var setValue = function (hsv, i, isLight) {
   return Math.round(hsv.v * 100) - brightnessStep2 * i
 }
 
-export default generator
+export { setFontColor, swatcheGenerator }
