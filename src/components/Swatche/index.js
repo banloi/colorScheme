@@ -9,8 +9,12 @@ function Swatche (props) {
       {list.map(index => {
         const color = swatcheGenerator(props.color, index)
         return (
-          <div key={index + color} style={{ backgroundColor: color.color }}>
-            <span className='color' style={{ color: color.fontColor }}>{color.color}</span>
+          <div
+            className='swatche-item'
+            key={index + color}
+            style={{ backgroundColor: color.color, color: color.fontColor }}
+          >
+            <span>{color.color}</span>
           </div>
         )
       })}
