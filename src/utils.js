@@ -4,8 +4,6 @@ function setFontColor (color) {
   const hsvColor = tinycolor(color).toHsv()
   const white = tinycolor.readability(hsvColor, '#fff')
   const black = tinycolor.readability(hsvColor, '#000')
-  console.log(white)
-  console.log(black)
   return white > 2 || white > black ? 'rgba(255,255,255,0.9)' : 'rgba(0,0,0,0.4)'
 }
 
@@ -21,9 +19,24 @@ function swatcheGenerator (color, index) {
   const isLight = index <= 6
   const hsv = tinycolor(color).toHsv()
   const i = isLight ? lightColorCount + 1 - index : index - lightColorCount - 1
+  if (i === 0) {
+    return {
+      color: tinycolor(color).toHexString().toUpperCase(),
+      fontColor: setFontColor(color)
+    }
+  }
+  let newHue, newStauration
+  // if the color id pure gray, keep the hue and stauration zero and just change the value
+  if (hsv.h === 0 && hsv.s === 0) {
+    newHue = 0
+    newStauration = 0
+  } else {
+    newHue = setHue(hsv, i, isLight)
+    newStauration = setSaturation(hsv, i, isLight)
+  }
   const newColor = tinycolor({
-    h: setHue(hsv, i, isLight),
-    s: setSaturation(hsv, i, isLight),
+    h: newHue,
+    s: newStauration,
     v: setValue(hsv, i, isLight)
   })
   const hexColor = newColor.toHexString().toUpperCase()
