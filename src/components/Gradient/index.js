@@ -6,12 +6,12 @@ function Gradient (props) {
   const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   const lists = shadeGenerator(props.color)
   return (
-    <div className='swatche'>
+    <div className='gradient'>
       {
         lists.map((color, index) => {
           return (
             <div
-              className='swatche-item'
+              className='gradient-item'
               key={color + index}
               style={{ backgroundColor: color, color: setFontColor(color) }}
             >
