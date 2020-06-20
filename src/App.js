@@ -5,7 +5,11 @@ import './style/container.scss'
 import data from './assets/colors.json'
 function App () {
   const [backgroundColor, setbackgroundColor] = useState('#5698c3')
-  const [backgroundColorName, setbackgroundColorName] = useState('晴蓝')
+  const [currentInfo, setCurrentInfo] = useState({
+    hex: '#5698c',
+    name: '晴蓝'
+  })
+  const [lockBackgroundColorWhite, setLockBackgroundColorWhite] = useState(false)
   const [selected, setSelected] = useState([
     {
       name: '天蓝',
@@ -18,12 +22,28 @@ function App () {
   ])
 
   function handleSelect (color, name) {
-    setbackgroundColor(color)
-    setbackgroundColorName(name)
+    setCurrentInfo({
+      hex: color,
+      name: name
+    })
+    if (!lockBackgroundColorWhite) {
+      setbackgroundColor(color)
+    }
   }
 
   function handleAdd (item) {
     setSelected([...selected, item])
+  }
+
+  function handleLockWhite () {
+    setLockBackgroundColorWhite(!lockBackgroundColorWhite)
+    if (!lockBackgroundColorWhite) {
+      setbackgroundColor('#fff')
+    }
+
+    if (lockBackgroundColorWhite) {
+      setbackgroundColor(currentInfo.hex)
+    }
   }
 
   return (
@@ -34,7 +54,12 @@ function App () {
             return <ColorBlock onSelect={handleSelect} key={list.hex + list.pinyin} info={list} />
           })}
         </div>
-        <CurrentColor hex={backgroundColor} name={backgroundColorName} handleAdd={handleAdd} />
+        <CurrentColor
+          info={currentInfo}
+          handleAdd={handleAdd}
+          handleLockWhite={handleLockWhite}
+          fontColor={setFontColor(backgroundColor)}
+        />
         <Swatche list={selected} />
         {/*         <Swatche
           color={backgroundColor}

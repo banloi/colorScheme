@@ -1,21 +1,25 @@
 import React from 'react'
-import AddButton from './AddButton'
 import './index.scss'
-import { setFontColor } from '../../utils'
 
 function CurrentColor (props) {
+  const { info, fontColor } = props
   return (
-    <div className='current-color' style={{ color: setFontColor(props.hex) }}>
+    <div className='current-color' style={{ color: fontColor }}>
       <title>
-        {props.name}
+        {info.name}
       </title>
       <span>
-        {props.hex}
+        {info.hex}
       </span>
       <button
-        onClick={() => { props.handleAdd({ name: props.name, hex: props.hex }) }}
+        onClick={() => { props.handleAdd({ name: info.name, hex: info.hex }) }}
       >
         +
+      </button>
+      <button
+        onClick={props.handleLockWhite}
+      >
+        锁定白色背景
       </button>
     </div>
 
