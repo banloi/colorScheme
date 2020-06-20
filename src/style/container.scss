@@ -12,11 +12,21 @@
   overflow: auto;
 }
 .list {
-  width: 45%;
+  width: 45vw;
   margin-left: 10%;
 }
-.swatche {
+.gradient {
   position: fixed;
-  top: 5vw;
+  top: 5vh;
   right: 3vw;
+}
+
+.swatche {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 15vh;
+  right: 5vw;
+  width: 30vw;
+  height: 70vh;
 }
