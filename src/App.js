@@ -1,13 +1,31 @@
 import React, { useState } from 'react'
-import { ColorBlock, Swatche } from './components'
+import { ColorBlock, Swatche, CurrentColor } from './components'
 import { setFontColor } from './utils'
 import './style/container.scss'
 import data from './assets/colors.json'
 function App () {
-  const [backgroundColor, setbackgroundColor] = useState('#989898')
-  function handleSelect (color) {
+  const [backgroundColor, setbackgroundColor] = useState('#5698c3')
+  const [backgroundColorName, setbackgroundColorName] = useState('晴蓝')
+  const [selected, setSelected] = useState([
+    {
+      name: '天蓝',
+      hex: '#1677b3'
+    },
+    {
+      name: '海青',
+      hex: '#22a2c3'
+    }
+  ])
+
+  function handleSelect (color, name) {
     setbackgroundColor(color)
+    setbackgroundColorName(name)
   }
+
+  function handleAdd (item) {
+    setSelected([...selected, item])
+  }
+
   return (
     <div className='warapper' style={{ backgroundColor: backgroundColor }}>
       <div className='container'>
@@ -16,9 +34,11 @@ function App () {
             return <ColorBlock onSelect={handleSelect} key={list.hex + list.pinyin} info={list} />
           })}
         </div>
-        <Swatche
+        <CurrentColor hex={backgroundColor} name={backgroundColorName} handleAdd={handleAdd} />
+        <Swatche list={selected} />
+        {/*         <Swatche
           color={backgroundColor}
-        />
+        /> */}
       </div>
     </div>
   )
