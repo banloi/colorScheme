@@ -90,4 +90,25 @@ var setValue = function (hsv, i, isLight) {
   return Math.round(hsv.v * 100) - brightnessStep2 * i
 }
 
-export { setFontColor, swatcheGenerator }
+function shadeGenerator (color) {
+  const hslColor = tinycolor(color).toHsl()
+  const { h, s } = hslColor
+  const position = Math.round(hslColor.l * 100 / 4)
+  console.log(position)
+  const list = []
+  list[position - 6] = tinycolor(color).toHslString()
+  for (let i = 1; i <= 18; i++) {
+    if (list[i - 1] === undefined) {
+      list[i - 1] = tinycolor({
+        h: h,
+        s: s,
+        l: (i + 5) * 0.04
+      }).toHslString()
+    }
+  }
+  console.log(list)
+  console.log(position)
+  return list
+}
+
+export { setFontColor, swatcheGenerator, shadeGenerator }
