@@ -46,6 +46,14 @@ function App () {
     }
   }
 
+  function handleRemove (color) {
+    const list = [...selected]
+    const result = list.filter((item) => {
+      return item.hex !== color
+    })
+    setSelected(result)
+  }
+
   return (
     <div className='warapper' style={{ backgroundColor: backgroundColor }}>
       <div className='container'>
@@ -60,7 +68,10 @@ function App () {
           handleLockWhite={handleLockWhite}
           fontColor={setFontColor(backgroundColor)}
         />
-        <Swatche list={selected} />
+        <Swatche
+          list={selected}
+          handleRemove={handleRemove}
+        />
         {/*         <Swatche
           color={backgroundColor}
         /> */}
