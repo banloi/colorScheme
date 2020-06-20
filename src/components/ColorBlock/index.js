@@ -32,10 +32,10 @@ function ColorBlock (props) {
     context.lineTo(24, 150 + lineHeight * (rgb[2] / 255))
     context.stroke()
   }
-  useEffect(() => { drawArcAndLine(info.CMYK, info.RGB) }, [])
+  useEffect(() => { drawArcAndLine(info.CMYK, info.RGB) }, [info.CMYK, info.RGB])
   return (
     <div className='item' style={{ borderTop: `6px solid ${info.hex}` }}>
-      <a disabled onClick={() => props.onSelect(info.hex)}>
+      <a disabled onClick={() => props.onSelect(info.hex, info.name)}>
         <span className='name'>
           {info.name}
         </span>
