@@ -6,7 +6,7 @@ import data from './assets/colors.json'
 function App () {
   const [backgroundColor, setbackgroundColor] = useState('#5698c3')
   const [currentInfo, setCurrentInfo] = useState({
-    hex: '#5698c',
+    hex: '#5698c3',
     name: '晴蓝'
   })
   const [lockBackgroundColorWhite, setLockBackgroundColorWhite] = useState(false)
