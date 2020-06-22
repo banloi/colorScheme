@@ -7,6 +7,14 @@ function setFontColor (color) {
   return white > 2 || white > black ? 'rgba(255,255,255,0.9)' : 'rgba(0,0,0,0.4)'
 }
 
+function setForegroundColor (color) {
+  const hsvColor = tinycolor(color).toHsv()
+  const white = tinycolor.readability(hsvColor, '#fff')
+  const black = tinycolor.readability(hsvColor, '#000')
+  return white > 2 || white > black ? 0 : 1
+  // 0 -> light, 1 -> dark
+}
+
 var hueStep = 2
 var saturationStep = 16
 var saturationStep2 = 5
@@ -111,4 +119,4 @@ function shadeGenerator (color) {
   return list
 }
 
-export { setFontColor, swatcheGenerator, shadeGenerator }
+export { setFontColor, setForegroundColor, swatcheGenerator, shadeGenerator }
