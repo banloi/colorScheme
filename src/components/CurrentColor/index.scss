@@ -9,10 +9,10 @@
     font-size: 5vw;
 
   }
-  .copy-box {
+  .icon-box {
     position: relative;
   }
-  .copy {
+  .icon {
     display: inline-block;
     height: 32px;
     width: 32px;
@@ -23,6 +23,7 @@
       opacity: 1;
     }
     &:hover + span{
+      z-index: 1;
       opacity: 1;
       transition: opacity 0.4s;
     }
@@ -34,8 +35,9 @@
     position: absolute;
     opacity: 0;
     display: inline-block;
+    z-index: -1;
 
-    top: -105%;
+    top: -100%;
     margin-left: 50%;
     left: -$tips-width / 2;
     width: $tips-width;
