@@ -9,4 +9,53 @@
     font-size: 5vw;
 
   }
+  .copy-box {
+    position: relative;
+  }
+  .copy {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    opacity: 0.8;
+    text-align: left;
+    cursor: pointer;
+    &:hover{
+      opacity: 1;
+    }
+    &:hover + span{
+      opacity: 1;
+      transition: opacity 0.4s;
+    }
+  }
+
+  }
+  .tips {
+    $tips-width: 90px;
+    position: absolute;
+    opacity: 0;
+    display: inline-block;
+
+    top: -105%;
+    margin-left: 50%;
+    left: -$tips-width / 2;
+    width: $tips-width;
+    line-height: 2em;
+
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    background-color: #000;
+    border-radius: 5px;
+    cursor: default;
+
+    &::after{
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: black transparent transparent transparent;
+    }
 }
