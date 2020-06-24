@@ -10,9 +10,9 @@
       -ms-user-select: none;
           user-select: none;
   title {
-    display: block;
-    font-size: 5vw;
-
+    display: inline-block;
+    width: 3rem;
+    font-size: 3rem;
   }
   .operate {
     position: absolute;
