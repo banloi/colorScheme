@@ -3,20 +3,32 @@
   top: 25vh;
   right: 40vw;
   width: 5vw;
+  height: 50vh;
   text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   title {
     display: block;
     font-size: 5vw;
 
   }
+  .operate {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
   .icon-box {
     position: relative;
+    margin-top: 1rem;
   }
   .icon {
     display: inline-block;
     height: 32px;
     width: 32px;
-    opacity: 0.8;
+    opacity: 0.7;
     text-align: left;
     cursor: pointer;
     &:hover{

@@ -4,10 +4,10 @@ import { setFontColor } from './utils'
 import './style/container.scss'
 import data from './assets/colors.json'
 function App () {
-  const [backgroundColor, setbackgroundColor] = useState('#5698c3')
   const [currentInfo, setCurrentInfo] = useState({
     hex: '#5698c3',
-    name: '晴蓝'
+    name: '晴蓝',
+    backgroundColor: '#5698c3'
   })
   const [lockBackgroundColorWhite, setLockBackgroundColorWhite] = useState(false)
   const [selected, setSelected] = useState([
@@ -22,13 +22,19 @@ function App () {
   ])
 
   function handleSelect (color, name) {
+    if (!lockBackgroundColorWhite) { // 未锁定白色，则设置背景颜色
+      setCurrentInfo({
+        hex: color,
+        name: name,
+        backgroundColor: color
+      })
+      return
+    }
     setCurrentInfo({
       hex: color,
-      name: name
+      name: name,
+      backgroundColor: '#fff'
     })
-    if (!lockBackgroundColorWhite) {
-      setbackgroundColor(color)
-    }
   }
 
   function handleAdd (item) {
@@ -38,11 +44,19 @@ function App () {
   function handleLockWhite () {
     setLockBackgroundColorWhite(!lockBackgroundColorWhite)
     if (!lockBackgroundColorWhite) {
-      setbackgroundColor('#fff')
+      setCurrentInfo({
+        hex: currentInfo.hex,
+        name: currentInfo.name,
+        backgroundColor: '#fff'
+      })
     }
 
     if (lockBackgroundColorWhite) {
-      setbackgroundColor(currentInfo.hex)
+      setCurrentInfo({
+        hex: currentInfo.hex,
+        name: currentInfo.name,
+        backgroundColor: currentInfo.hex
+      })
     }
   }
 
@@ -55,26 +69,24 @@ function App () {
   }
 
   return (
-    <div className='warapper' style={{ backgroundColor: backgroundColor }}>
+    <div className='warapper' style={{ backgroundColor: currentInfo.backgroundColor }}>
       <div className='container'>
-        <div className='list' style={{ color: setFontColor(backgroundColor) }}>
+        <div className='list' style={{ color: setFontColor(currentInfo.backgroundColor) }}>
           {data.map((list) => {
             return <ColorBlock onSelect={handleSelect} key={list.hex + list.pinyin} info={list} />
           })}
         </div>
         <CurrentColor
           info={currentInfo}
+          locked={lockBackgroundColorWhite}
           handleAdd={handleAdd}
           handleLockWhite={handleLockWhite}
-          fontColor={setFontColor(backgroundColor)}
+          fontColor={setFontColor(currentInfo.backgroundColor)}
         />
         <Swatche
           list={selected}
           handleRemove={handleRemove}
         />
-        {/*         <Swatche
-          color={backgroundColor}
-        /> */}
       </div>
     </div>
   )
