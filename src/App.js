@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ColorBlock, Swatche, CurrentColor } from './components'
+import { ColorBlock, Swatche, CurrentColor, Message } from './components'
 import { setFontColor } from './utils'
 import './style/container.scss'
 import data from './assets/colors.json'
@@ -10,6 +10,7 @@ function App () {
     backgroundColor: '#5698c3'
   })
   const [lockBackgroundColorWhite, setLockBackgroundColorWhite] = useState(false)
+  const [message, setMessage] = useState('')
   const [selected, setSelected] = useState([
     {
       name: '天蓝',
@@ -37,13 +38,20 @@ function App () {
     })
   }
 
+  function handleCopy (color) {
+    console.log('color')
+    setMessage(`已复制${color}`)
+  }
+
   function handleAdd (item) {
+    setMessage('已添加')
     setSelected([...selected, item])
   }
 
   function handleLockWhite () {
     setLockBackgroundColorWhite(!lockBackgroundColorWhite)
     if (!lockBackgroundColorWhite) {
+      setMessage('已锁定')
       setCurrentInfo({
         hex: currentInfo.hex,
         name: currentInfo.name,
@@ -52,6 +60,7 @@ function App () {
     }
 
     if (lockBackgroundColorWhite) {
+      setMessage('已解锁')
       setCurrentInfo({
         hex: currentInfo.hex,
         name: currentInfo.name,
@@ -79,6 +88,7 @@ function App () {
         <CurrentColor
           info={currentInfo}
           locked={lockBackgroundColorWhite}
+          handleCopy={handleCopy}
           handleAdd={handleAdd}
           handleLockWhite={handleLockWhite}
           fontColor={setFontColor(currentInfo.backgroundColor)}
@@ -87,6 +97,7 @@ function App () {
           list={selected}
           handleRemove={handleRemove}
         />
+        <Message content={message} />
       </div>
     </div>
   )

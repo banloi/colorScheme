@@ -34,13 +34,12 @@ function CurrentColor (props) {
         {info.hex}
       </span> */}
       <div className='operate'>
-        <div className='icon-box'>
+
+        <div className='icon-box' onClick={() => { props.handleCopy('nimama') }}>
           <CopyToClipboard text={info.hex}>
-            <>
-              <div className='icon' style={{ backgroundImage: `url(${copyIcon})` }} />
-              <span className='tips'>点击复制 Hex</span>
-            </>
+            <div className='icon' style={{ backgroundImage: `url(${copyIcon})` }} />
           </CopyToClipboard>
+          <span className='tips'>点击复制 Hex</span>
         </div>
         <div className='icon-box'>
           <div
@@ -52,7 +51,6 @@ function CurrentColor (props) {
             {
               locked ? '解除锁定' : '锁定白色背景'
             }
-
           </span>
         </div>
         <div className='icon-box'>
@@ -64,7 +62,6 @@ function CurrentColor (props) {
           <span className='tips'>添加至色板</span>
         </div>
       </div>
-
     </div>
   )
 }
