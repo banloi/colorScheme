@@ -35,7 +35,7 @@ function CurrentColor (props) {
       </span> */}
       <div className='operate'>
 
-        <div className='icon-box' onClick={() => { props.handleCopy('nimama') }}>
+        <div className='icon-box' onClick={() => { props.handleCopy(info.hex.toUpperCase()) }}>
           <CopyToClipboard text={info.hex}>
             <div className='icon' style={{ backgroundImage: `url(${copyIcon})` }} />
           </CopyToClipboard>
