@@ -12,7 +12,7 @@ class Notice extends Component {
     const { type, content } = this.props
     return (
       <div className={`toast-notice ${type}`}>
-        {/*         <svg className='icon' aria-hidden='true'>
+        {/*         <svg className='notice-icon' aria-hidden='true'>
           <use xlinkHref={`#${icons[type]}`} />
         </svg> */}
         <span>{content}</span>
